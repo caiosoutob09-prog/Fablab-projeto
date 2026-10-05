@@ -14,3 +14,4 @@ Route::get('/', [UsuarioController::class, 'inicio']) ->name('tela_inicio');
 Route::get('/', [UsuarioController::class, 'inicio']) ->name('tela_inicio');
 Route::get('/login_admin', [AdiministradorController::class, 'adimin']) ->name('login_admin');  
 Route::get('/emprestimo', [EmprestimoController::class, 'emprestimo']) ->name('tela_emprestimo');
+Route::get('/admin', [AdiministradorController::class, 'admin']) ->name('tela_admin');
