@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->unsignedBigInteger('local_id');
+            $table->foreign('local_id')->references('id')->on('locais')->onDelete('cascade');
+            $table->integer('quantidade')->unsigned();
             $table->timestamp('horario_retirada')->useCurrent();
             $table->date('prazo');
             $table->timestamp('horario_devolucao')->nullable();
@@ -23,9 +26,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::table('emprestimos', function (Blueprint $table) {
