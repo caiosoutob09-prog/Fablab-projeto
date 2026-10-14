@@ -13,4 +13,10 @@ class Local extends Model
         'identificacao',
         'descricao',
     ];
+
+
+    public function itens()
+    {
+        return $this->hasMany(Item::class, 'local_id');
+    }
 }

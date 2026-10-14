@@ -4,12 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class categoria extends Model
+class Categoria extends Model
 {
-        protected $table = 'categoria';
-    
-        protected $fillable = [
-            'nome',
-            'descricao'
-        ];
+    protected $table = 'categorias';
+
+    protected $fillable = [
+        'nome',
+        'descricao',
+    ];
+
+public function itens()
+    {
+        return $this->hasMany(Item::class, 'categoria_id');
+    }
+
 }

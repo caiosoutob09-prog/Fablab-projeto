@@ -54,4 +54,34 @@ class LocalController extends Controller
         return response()->json(['locais' => $locais, 'error' => 'n'], 200);
     }
     
+    public function atualizar_local(Request $request)
+    {
+         $request->validate([
+            'espaço' => 'required|string|max:255',
+            'identificacao' => 'required|max:255|unique:locais',
+            'descricao' => 'required|string',
+        ]);
+
+        try {
+            $local = Local::find($request->input('id'));
+
+            
+            if ($local->identificacao != $request->input('identificacao')) {
+                $local_identificacao = Local::where('identificacao', $request->input('identificacao'))->first();
+                if ($local_identificacao) {
+                    return response()->json(['message' => 'Erro ao atualizar local: Identificação já cadastrada', 'error' => 's'], 500);
+                }
+            }
+
+            $local->espaço = $request->input('espaço');
+            $local->identificacao = $request->input('identificacao');
+            $local->descricao = $request->input('descricao');
+            $local->save();
+
+            return response()->json(['message' => 'Local atualizado com sucesso!', 'error' => 'n'], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Erro ao atualizar local: '.$th->getMessage(), 'error' => 's'], 500);
+        }
+    }
 }

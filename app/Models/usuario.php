@@ -16,5 +16,8 @@ class usuario extends Model
         'nivel'
     ];
 
-
+    public function emprestimos()
+    {
+        return $this->hasMany(Emprestimo::class, 'usuario_id');
+    }
 }

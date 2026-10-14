@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
-            $table->unsignedBigInteger('local_id');
-            $table->foreign('local_id')->references('id')->on('locais')->onDelete('cascade');
+            $table->unsignedBigInteger('item_id');
+            $table->foreign('item_id')->references('id')->on('itens')->onDelete('cascade');
             $table->integer('quantidade')->unsigned();
             $table->timestamp('horario_retirada')->useCurrent();
             $table->date('prazo');
