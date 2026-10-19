@@ -1,0 +1,22 @@
+$kind: http-request
+description: ""
+url: http://fablab.test/api/atualizar_usuario
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"id\":\"4\",\r
+
+    \  \"nome\":\"luis adalberto\",\r
+
+    \  \"email\":\"adalberto@gmail.com\",\r
+
+    \  \"senha\":\"4567891011\",\r
+
+    \  \"turma\":\"2A\",\r
+
+    \  \"nivel\":\"2\"\r
+
+    }"
+order: 3000

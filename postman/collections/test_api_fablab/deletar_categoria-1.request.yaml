@@ -1,0 +1,8 @@
+$kind: http-request
+name: deletar_categoria
+url: http://fablab.test/api/deletar_categoria
+method: DELETE
+body:
+  type: json
+  content: "{\r\n    \"id\": 3\r\n}"
+order: 16000

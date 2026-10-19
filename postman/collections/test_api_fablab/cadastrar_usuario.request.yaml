@@ -1,0 +1,51 @@
+$kind: http-request
+description: |-
+  Registers a new user in the FabLab system.
+
+  **Method:** POST  
+  **Endpoint:** `/api/cadastrar_usuario`
+
+  ## Request Body (JSON)
+
+  | Field | Type | Description |
+  | --- | --- | --- |
+  | nome | string | Full name of the user |
+  | email | string | User's email address |
+  | senha | string | User's password |
+  | turma | string | Class/group the user belongs to |
+  | nivel | string | User's level (e.g. "2" for level 2) |
+
+  ## Responses
+
+  | Status | Description |
+  | --- | --- |
+  | 201 | User registered successfully |
+  | 4xx | Validation or conflict error |
+
+  ## Example Response (201)
+
+  ``` json
+  {
+    "message": "Usuário cadastrado com sucesso",
+    "error": "n"
+  }
+
+   ```
+url: http://fablab.test/api/cadastrar_usuario
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"nome\":\"joão umberto\",\r
+
+    \  \"email\":\"umberto@gmail.com\",\r
+
+    \  \"senha\":\"4567891011\",\r
+
+    \  \"turma\":\"2A\",\r
+
+    \  \"nivel\":\"2\"\r
+
+    }"
+order: 1293

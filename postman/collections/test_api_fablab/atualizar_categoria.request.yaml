@@ -1,0 +1,15 @@
+$kind: http-request
+url: http://fablab.test/api/atualizar_categoria
+method: PUT
+body:
+  type: json
+  content: "{  \r
+
+    \    \"id\":3,\r
+
+    \    \"nome\":\"peça eletronicas\",\r
+
+    \    \"descricao\":\"peças eletronicas para uso em circuiros e eletronicas\"\r
+
+    }"
+order: 15000

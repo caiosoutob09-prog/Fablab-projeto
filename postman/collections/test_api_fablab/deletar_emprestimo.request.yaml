@@ -1,0 +1,7 @@
+$kind: http-request
+url: http://fablab.test/api/deletar_emprestimo
+method: DELETE
+body:
+  type: json
+  content: "{\r\n    \"id\":4\r\n}"
+order: 20000

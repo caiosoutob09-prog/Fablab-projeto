@@ -1,0 +1,23 @@
+$kind: http-request
+url: http://fablab.test/api/atualizar_emprestimo
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"id\":4,\r
+
+    \    \"usuario_id\":1,\r
+
+    \    \"item_id\":3,\r
+
+    \    \"quantidade\":2,\r
+
+    \    \"prazo\": \"2026-10-26 11:12:13\",\r
+
+    \    \"horario_retirada\": \"2026-10-19 11:12:13\",\r
+
+    \    \"horario_devolucao\": \"2026-10-20 14:23:14\"\r
+
+    }"
+order: 19000

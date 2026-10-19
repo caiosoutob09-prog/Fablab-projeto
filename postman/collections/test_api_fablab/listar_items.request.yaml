@@ -1,0 +1,4 @@
+$kind: http-request
+url: http://fablab.test/api/listar_items
+method: GET
+order: 9325

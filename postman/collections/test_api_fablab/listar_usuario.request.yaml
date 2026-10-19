@@ -1,0 +1,8 @@
+$kind: http-request
+url: http://fablab.test/api/listar_usuario
+method: GET
+body:
+  type: json
+  content: ""
+examples: .resources/listar_usuario.resources/examples
+order: 3505

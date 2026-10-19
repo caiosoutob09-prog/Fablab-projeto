@@ -1,0 +1,16 @@
+$kind: http-request
+url: http://fablab.test/api/cadastrar_local
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"espaço\":\"gaveteiro 1\",\r
+
+    \    \"identificacao\":\"gaveta 23\",\r
+
+    \    \"descricao\":\"gaveteiro ao lado da empressora\"\r
+
+    }"
+examples: .resources/cadastrar local.resources/examples
+order: 4345

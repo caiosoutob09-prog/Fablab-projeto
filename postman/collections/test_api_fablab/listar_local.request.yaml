@@ -1,0 +1,7 @@
+$kind: http-request
+url: http://fablab.test/api/listar_locais
+method: GET
+body:
+  type: json
+  content: ""
+order: 5133

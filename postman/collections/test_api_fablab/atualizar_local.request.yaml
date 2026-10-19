@@ -1,0 +1,17 @@
+$kind: http-request
+url: http://fablab.test/api/atualizar_local
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"id\":\"3\",\r
+
+    \    \"espaço\":\"gaveteiro 1\",\r
+
+    \    \"identificacao\":\"gaveta 3\",\r
+
+    \    \"descricao\":\"gaveteiro ao lado da empressora\"\r
+
+    }"
+order: 7000

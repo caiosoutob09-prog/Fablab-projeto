@@ -37,6 +37,33 @@ class CategoriaController extends Controller
         return response()->json(['categorias' => $categorias, 'error' => 'n'], 200);
     }
 
+    public function atualizar_categoria(Request $request)
+    {
+        $dados = $request->validate([
+            'id' => 'required|integer|exists:categorias,id',
+            'nome' => 'required|string|max:100',
+            'descricao' => 'nullable|string',
+        ]);
+
+        try {
+            $categoria = Categoria::findOrFail($dados['id']);
+            $categoria->nome = $dados['nome'];
+            $categoria->descricao = $dados['descricao'] ?? null;
+            $categoria->save();
+
+            return response()->json([
+                'message' => 'Categoria atualizada com sucesso',
+                'error' => 'n',
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Erro ao atualizar categoria',
+                'error' => 's',
+                'msg_error' => $th->getMessage(),
+            ], 500);
+        }
+    }
+
     public function deletar_categoria(Request $request){
        $request->validate([
             'id' => 'required|integer|exists:categorias,id',
@@ -51,5 +78,5 @@ class CategoriaController extends Controller
             return response()->json(['message' => 'Erro ao deletar categoria', 'error' => 's', 'msg_error' => $th->getMessage()], 500);
         }
     }
-
+}
     

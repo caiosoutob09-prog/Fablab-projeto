@@ -1,0 +1,13 @@
+$kind: http-request
+url: http://fablab.test/api/cadastrar_categoria
+method: POST
+body:
+  type: json
+  content: "{  \r
+
+    \    \"nome\":\"circuitos\",\r
+
+    \    \"descricao\":\"peças eletronicas\"\r
+
+    }"
+order: 3982

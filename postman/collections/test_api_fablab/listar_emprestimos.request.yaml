@@ -1,0 +1,4 @@
+$kind: http-request
+url: http://fablab.test/api/listar_emprestimos
+method: GET
+order: 18170

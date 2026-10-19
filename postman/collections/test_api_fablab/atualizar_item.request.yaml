@@ -1,0 +1,23 @@
+$kind: http-request
+url: http://fablab.test/api/atualizar_item
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"id\": 4,\r
+
+    \    \"categoria_id\": 2,\r
+
+    \    \"local_id\": 2,\r
+
+    \    \"nome\": \"estilete\",\r
+
+    \    \"descricao\": \"estilete afiado\",\r
+
+    \    \"qtd_total\": 5,\r
+
+    \    \"qtd_disponivel\": 5\r
+
+    }"
+order: 11000
