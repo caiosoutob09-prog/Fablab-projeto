@@ -5,17 +5,18 @@
 @section('content')
 
     <div class="container-fluid px-3">
-      <div class="row justify-content-center mt-4 mb-4">
-        <ul class="col-12 col-lg-9 nav nav-underline d-flex flex-row justify-content-center list-unstyled px-0">
-            <li class="nav-item text-center flex-fill">
-                <a class="nav-link text-black active" aria-current="page" id="emprestar_btn" href="#">Emprestar</a>
-            </li>
-            <li class="text-center nav-item flex-fill">
-                <a class="nav-link text-black" aria-current="page" id="lista_btn" href="#">Lista</a>
-            </li>
-        </ul>
+        <div class="row justify-content-center mt-4 mb-4">
+            <ul class="col-12 col-lg-9 nav nav-underline d-flex flex-row justify-content-center list-unstyled px-0">
+                <li class="nav-item text-center flex-fill">
+                    <a class="nav-link text-black active poppins" aria-current="page" id="emprestar_btn"
+                        href="#">Emprestar</a>
+                </li>
+                <li class="text-center nav-item flex-fill">
+                    <a class="nav-link text-black poppins" aria-current="page" id="lista_btn" href="#">Lista</a>
+                </li>
+            </ul>
             <div id="form-emprestimo" class="col-12 col-lg-9 rounded shadow-lg p-3 mb-5 mt-4 bg-body-tertiary">
-                 <div class="row justify-content-center d-flex">
+                <div class="row justify-content-center d-flex">
                     <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                         <label for="nome" class="form-label">Nome do item</label>
                         <input type="text" class="form-control " id="nome" name="nome"
@@ -77,27 +78,38 @@
                         <button type="submit" class=" btn btn-dark shadow-lg container-fluid">Emprestar</button>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div id="lista" class="col-12 col-lg-9 rounded shadow-lg p-3 mb-5 mt-4 bg-body-tertiary">
-                <div class="table-responsive">
-                 <table class="table table-dark text-light table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">QTD_disponível</th>
-                        <th scope="col">QTD_total</th>
-                        <th scope="col">Localização</th>
-                    </tr>
-                </thead>
-                <tbody>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Pesquisar item" id="pesquisar_item" name="pesquisar"
+                        aria-label="pesquisar" list="procuraritens" aria-describedby="button-addon2" ">
+                        <datalist id="procuraritens">
+                        
+                    </datalist>
+                    <button class="btn btn-primary"  type="button" id="button-addon2"><i class="bi bi-filter" "></i></button>
                     
-                </tbody>
-            </table>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-dark text-light table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">QTD_disponível</th>
+                                <th scope="col">QTD_total</th>
+                                <th scope="col">Localização</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
-      </div>
+        </div>
     </div>
 @endsection
