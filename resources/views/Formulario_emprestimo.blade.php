@@ -36,7 +36,7 @@
                         <label for="ano" class="form-label">Ano/Turma</label>
                         <input class="form-control" list="datalistOptions" maxlength="2"
                             placeholder="Digite o ano/turma (ex: 1A)">
-                        <datalist id="datalistOptions">
+                        <datalist id="datalistOptions">  
                             <option value="6A">
                             <option value="6B">
                             <option value="7A">

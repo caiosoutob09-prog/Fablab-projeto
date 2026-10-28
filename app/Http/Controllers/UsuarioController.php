@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use App\Models\UsuarioToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -87,7 +88,7 @@ class UsuarioController extends Controller
 
     public function atualizar_usuario(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:usuarios',
             'senha' => 'required|string',
@@ -98,7 +99,6 @@ class UsuarioController extends Controller
         try {
             $usuario = Usuario::find($request->input('id'));
 
-            
             if ($usuario->email != $request->input('email')) {
                 $usuario_email = Usuario::where('email', $request->input('email'))->first();
                 if ($usuario_email) {
@@ -119,4 +119,34 @@ class UsuarioController extends Controller
             return response()->json(['message' => 'Erro ao atualizar usuário: '.$th->getMessage(), 'erro' => 's'], 500);
         }
     }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'senha' => 'required',
+        ]);
+
+        $usuario = Usuario::where('email', '=', $request->input('email'))->first();
+        if ($usuario) {
+
+            if (Hash::check($request->senha, $usuario->senha)) {
+                $usuario_token = new UsuarioToken;
+                $usuario_token->usuario_id = $usuario->id;
+                $usuario_token->token = Hash::make($usuario->id.$usuario->email.now());
+                $usuario_token->valido_ate = now()->addDays(7);
+                $usuario_token->save();
+
+                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $usuario_token->token], 200);
+
+            } else {
+                return response()->json(['message' => 'Usuário ou senha incorretos!', 'erro' => 's'], 200);
+            }
+
+        } else {
+            return response()->json(['message' => 'Email não encontrado!', 'erro' => 's'], 200);
+        }
+
+    }
 }
+    

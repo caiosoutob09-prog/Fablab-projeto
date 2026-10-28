@@ -7,6 +7,8 @@ use App\Http\Controllers\LocalController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\LoginApiMiddleware;
+use App\Http\Middleware;
 
 // Usuário autenticado
 Route::get('/user', function (Request $request) {
@@ -18,8 +20,8 @@ Route::post('/cadastrar_usuario', [UsuarioController::class, 'cadastrar_usuarios
 Route::get('/listar_usuario', [UsuarioController::class, 'listar_usuarios']);
 Route::get('/listar_usuario_simples', [UsuarioController::class, 'listar_usuarios_simples']);
 Route::get('/ver_usuario', [UsuarioController::class, 'ver_usuarios']);
-Route::put('/atualizar_usuario', [UsuarioController::class, 'atualizar_usuario']);
-Route::delete('/deletar_usuario', [UsuarioController::class, 'deletar_usuario']);
+Route::put('/atualizar_usuario', [UsuarioController::class, 'atualizar_usuario'])->middleware(LoginApiMiddleware::class);
+Route::delete('/deletar_usuario', [UsuarioController::class, 'deletar_usuario'])->middleware(LoginApiMiddleware::class);
 
 // Locais
 Route::post('/cadastrar_local', [LocalController::class, 'cadastrar_local']);
@@ -44,3 +46,7 @@ Route::post('/emprestar', [EmprestimoController::class, 'emprestar']);
 Route::get('/listar_emprestimos', [EmprestimoController::class, 'listar_emprestimos']);
 Route::put('/atualizar_emprestimo', [EmprestimoController::class, 'atualizar_emprestimo']);
 Route::delete('/deletar_emprestimo', [EmprestimoController::class, 'deletar_emprestimo']);
+
+
+//Login
+Route::post('/login', [UsuarioController::class, 'login']);
