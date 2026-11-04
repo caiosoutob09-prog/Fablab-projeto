@@ -5,10 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\usuario;
 use App\Models\UsuarioToken;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Hash;
+
 
 
 class LoginApiMiddleware

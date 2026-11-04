@@ -6,6 +6,8 @@ use App\Models\Usuario;
 use App\Models\UsuarioToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Admin;
+use App\Models\AdminToken;
 
 class UsuarioController extends Controller
 {
@@ -35,6 +37,14 @@ class UsuarioController extends Controller
             $usuario->nivel = $request->input('nivel');
 
             $usuario->save();
+            if ($usuario->nivel == 2) {
+                Admin::create([
+                    'usuario_id' => $usuario->id, 
+                    'nome' => $usuario->nome,
+                    'email' => $usuario->email,
+                    'senha' => $usuario->senha, 
+                ]);
+            }
 
             return response()->json(['message' => 'Usuário cadastrado com sucesso', 'error' => 'n'], 201);
 
@@ -148,5 +158,63 @@ class UsuarioController extends Controller
         }
 
     }
-}
-    
+
+    public function logout(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer|exists:usuario_token,id',
+        ]);
+
+        try {
+            $usuario_token = UsuarioToken::find($request->id);
+            $usuario_token->delete();
+
+            return response()->json(['message' => 'Usuario deslogado com sucesso', 'error' => 'n'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Erro ao deslogar usuario', 'error' => 's', 'msg_error' => $th->getMessage()], 500);
+        }
+    }
+
+    public function loginadm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'senha' => 'required',
+        ]);
+
+        $admin = Admin::where('email', '=', $request->input('email'))->first();
+        if ($admin) {
+
+            if (Hash::check($request->senha, $admin->senha)) {
+                $admin_token = new AdminToken;
+                $admin_token->usuario_id = $admin->usuario_id;
+                $admin_token->token = Hash::make($admin->id.$admin->email.now());
+                $admin_token->valido_ate = now()->addDays(7);
+                $admin_token->save();
+
+                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $admin_token->token], 200);
+
+            } else {
+                return response()->json(['message' => 'Administrador ou senha incorretos!', 'erro' => 's'], 200);
+            }
+
+        } else {
+            return response()->json(['message' => 'Email não encontrado!', 'erro' => 's'], 200);
+        }
+    }
+    public function logoutadm(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer|exists:admin_token,id',
+        ]);
+
+        try {
+            $admin_token = AdminToken::find($request->id);
+            $admin_token->delete();
+
+            return response()->json(['message' => 'Administrador deslogado com sucesso', 'error' => 'n'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Erro ao deslogar administrador', 'error' => 's', 'msg_error' => $th->getMessage()], 500);
+        }
+    }
+}    

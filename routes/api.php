@@ -8,7 +8,7 @@ use App\Http\Controllers\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LoginApiMiddleware;
-use App\Http\Middleware;
+use App\Http\Middleware\AdminApiMiddleware;
 
 // Usuário autenticado
 Route::get('/user', function (Request $request) {
@@ -17,36 +17,40 @@ Route::get('/user', function (Request $request) {
 
 // Usuários
 Route::post('/cadastrar_usuario', [UsuarioController::class, 'cadastrar_usuarios']);
-Route::get('/listar_usuario', [UsuarioController::class, 'listar_usuarios']);
-Route::get('/listar_usuario_simples', [UsuarioController::class, 'listar_usuarios_simples']);
-Route::get('/ver_usuario', [UsuarioController::class, 'ver_usuarios']);
+Route::get('/listar_usuario', [UsuarioController::class, 'listar_usuarios'])->middleware(AdminApiMiddleware::class);
+Route::get('/listar_usuario_simples', [UsuarioController::class, 'listar_usuarios_simples'])->middleware(AdminApiMiddleware::class);
+Route::get('/ver_usuario', [UsuarioController::class, 'ver_usuarios'])->middleware(AdminApiMiddleware::class);
 Route::put('/atualizar_usuario', [UsuarioController::class, 'atualizar_usuario'])->middleware(LoginApiMiddleware::class);
 Route::delete('/deletar_usuario', [UsuarioController::class, 'deletar_usuario'])->middleware(LoginApiMiddleware::class);
 
 // Locais
-Route::post('/cadastrar_local', [LocalController::class, 'cadastrar_local']);
+Route::post('/cadastrar_local', [LocalController::class, 'cadastrar_local'])->middleware(AdminApiMiddleware::class);
 Route::get('/listar_locais', [LocalController::class, 'listar_locais']);
-Route::put('/atualizar_local', [LocalController::class, 'atualizar_local']);
-Route::delete('/deletar_local', [LocalController::class, 'deletar_local']);
+Route::put('/atualizar_local', [LocalController::class, 'atualizar_local'])->middleware(AdminApiMiddleware::class);
+Route::delete('/deletar_local', [LocalController::class, 'deletar_local'])->middleware(AdminApiMiddleware::class);
 
 // Itens
 Route::post('/cadastrar_item', [ItemController::class, 'cadastrar_item']);
 Route::get('/listar_items', [ItemController::class, 'listar_items']);
-Route::put('/atualizar_item', [ItemController::class, 'atualizar_item']);
-Route::delete('/deletar_item', [ItemController::class, 'deletar_item']);
-        
+Route::put('/atualizar_item', [ItemController::class, 'atualizar_item'])->middleware(AdminApiMiddleware::class);
+Route::delete('/deletar_item', [ItemController::class, 'deletar_item'])->middleware(AdminApiMiddleware::class);
+
 // Categorias
-Route::post('/cadastrar_categoria', [CategoriaController::class, 'cadastrar_categoria']);
+Route::post('/cadastrar_categoria', [CategoriaController::class, 'cadastrar_categoria'])->middleware(AdminApiMiddleware::class);
 Route::get('/listar_categorias', [CategoriaController::class, 'listar_categorias']);
-Route::put('/atualizar_categoria', [CategoriaController::class, 'atualizar_categoria']);
-Route::delete('/deletar_categoria', [CategoriaController::class, 'deletar_categoria']);
+Route::put('/atualizar_categoria', [CategoriaController::class, 'atualizar_categoria'])->middleware(AdminApiMiddleware::class);
+Route::delete('/deletar_categoria', [CategoriaController::class, 'deletar_categoria'])->middleware(AdminApiMiddleware::class);
 
 // Empréstimos
 Route::post('/emprestar', [EmprestimoController::class, 'emprestar']);
 Route::get('/listar_emprestimos', [EmprestimoController::class, 'listar_emprestimos']);
-Route::put('/atualizar_emprestimo', [EmprestimoController::class, 'atualizar_emprestimo']);
-Route::delete('/deletar_emprestimo', [EmprestimoController::class, 'deletar_emprestimo']);
+Route::put('/atualizar_emprestimo', [EmprestimoController::class, 'atualizar_emprestimo'])->middleware(AdminApiMiddleware::class);
+Route::delete('/deletar_emprestimo', [EmprestimoController::class, 'deletar_emprestimo'])->middleware(AdminApiMiddleware::class);
 
 
 //Login
 Route::post('/login', [UsuarioController::class, 'login']);
+Route::delete('/logout', [UsuarioController::class,'logout'])->middleware(LoginApiMiddleware::class);   
+//login adm
+Route::post('/loginadm', [UsuarioController::class,'loginadm']);
+Route::delete('/logoutadm', [UsuarioController::class,'logoutadm'])->middleware(AdminApiMiddleware::class);   
