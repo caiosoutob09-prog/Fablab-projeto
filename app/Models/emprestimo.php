@@ -19,6 +19,6 @@ class Emprestimo extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(usuario::class, 'usuario_id');
+        return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 }

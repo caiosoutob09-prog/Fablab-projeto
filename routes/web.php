@@ -4,14 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AdiministradorController;
 use App\Http\Controllers\EmprestimoController;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\HomeController;
+use App\Http\Middleware\LogadoWebMiddleware;
 
 Route::get('/', [UsuarioController::class, 'inicio']) ->name('tela_inicio');
 
 Route::get('/', [UsuarioController::class, 'inicio']) ->name('tela_inicio');
 Route::get('/login_admin', [AdiministradorController::class, 'adimin']) ->name('login_admin');  
 Route::get('/emprestimo', [EmprestimoController::class, 'emprestimo']) ->name('tela_emprestimo');
-Route::get('/admin', [AdiministradorController::class, 'admin']) ->name('tela_admin');
+Route::get('/admin', [AdiministradorController::class, 'admin']) ->name('admin')->middleware(LogadoWebMiddleware::class);

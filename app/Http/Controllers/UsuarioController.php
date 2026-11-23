@@ -16,6 +16,7 @@ class UsuarioController extends Controller
         return view('inicio');
     }
 
+
     public function cadastrar_usuarios(Request $request)
     {
 
@@ -88,8 +89,11 @@ class UsuarioController extends Controller
 
         try {
             $usuario = Usuario::find($request->id);
+            $admin = Admin::where('usuario_id', $usuario->id)->first();
             $usuario->delete();
-
+            if ($admin = $usuario->admin) {
+                $admin->delete();
+            }
             return response()->json(['message' => 'Usuário deletado com sucesso', 'error' => 'n'], 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => 'Erro ao deletar usuário', 'error' => 's', 'msg_error' => $th->getMessage()], 500);
@@ -147,7 +151,7 @@ class UsuarioController extends Controller
                 $usuario_token->valido_ate = now()->addDays(7);
                 $usuario_token->save();
 
-                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $usuario_token->token], 200);
+                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $usuario_token->token, "usuario_id" => $usuario->id], 200);
 
             } else {
                 return response()->json(['message' => 'Usuário ou senha incorretos!', 'erro' => 's'], 200);

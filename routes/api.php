@@ -17,7 +17,7 @@ Route::get('/user', function (Request $request) {
 
 // Usuários
 Route::post('/cadastrar_usuario', [UsuarioController::class, 'cadastrar_usuarios']);
-Route::get('/listar_usuario', [UsuarioController::class, 'listar_usuarios'])->middleware(AdminApiMiddleware::class);
+Route::get('/listar_usuario', [UsuarioController::class, 'listar_usuarios']);
 Route::get('/listar_usuario_simples', [UsuarioController::class, 'listar_usuarios_simples'])->middleware(AdminApiMiddleware::class);
 Route::get('/ver_usuario', [UsuarioController::class, 'ver_usuarios'])->middleware(AdminApiMiddleware::class);
 Route::put('/atualizar_usuario', [UsuarioController::class, 'atualizar_usuario'])->middleware(LoginApiMiddleware::class);

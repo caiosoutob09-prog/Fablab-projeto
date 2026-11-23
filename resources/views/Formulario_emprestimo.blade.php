@@ -4,6 +4,8 @@
 
 @section('content')
 
+{{ ($dados) }}
+
     <div class="container-fluid px-3">
         <div class="row justify-content-center mt-4 mb-4">
             <ul class="col-12 col-lg-9 nav nav-underline d-flex flex-row justify-content-center list-unstyled px-0">
@@ -105,7 +107,7 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            
                         </tbody>
                     </table>
                 </div>

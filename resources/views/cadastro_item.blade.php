@@ -1,14 +1,17 @@
 @extends('Layout.branco')
 
-@section('title', 'Emprestimo')
+@section('title', 'Painel ADM')
 
 @section('content')
+
+    @vite(['resources/js/cadastro_usuario.js'])
 
     <div class="container-fluid px-3">
         <div class="row justify-content-center mt-4 mb-4">
             <ul class="col-12 col-lg-9 nav nav-underline d-flex flex-row justify-content-center list-unstyled px-0">
                 <li class="nav-item text-center flex-fill">
-                    <a class="nav-link text-black active poppins" aria-current="page" id="cadastros_btn" href="#">Cadastro</a>
+                    <a class="nav-link text-black active poppins" aria-current="page" id="cadastros_btn"
+                        href="#">Cadastro</a>
                 </li>
                 <li class="text-center nav-item flex-fill">
                     <a class="nav-link text-black poppins" aria-current="page" id="admlista_btn" href="#">Lista</a>
@@ -49,12 +52,12 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                                 <label for="descricao" class="form-label">Descrição do item</label>
-                                <textarea class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição do item para cadastro"></textarea>
+                                <textarea class="form-control" id="descricao" name="descricao"
+                                    placeholder="Digite a descrição do item para cadastro"></textarea>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                                 <label for="local" class="form-label">Local</label>
                                 <select class="form-select" id="local" name="local">
-                                    <option selected>Selecione o local do item</option>
 
                                 </select>
                             </div>
@@ -121,7 +124,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                 <label for="turma" class="form-label">Ano/Turma</label>
-                                <input class="form-control" list="datalistOptions" maxlength="2"
+                                <input class="form-control" list="datalistOptions" id="turma_usuario" maxlength="2"
                                     placeholder="Digite o ano/turma (ex: 1A)">
                                 <datalist id="datalistOptions">
                                     <option value="6A">
@@ -141,7 +144,7 @@
                                 </datalist>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
-                                <a href="#" class="btn btn-dark w-100" id="cadastrar_usuario_btn">Cadastrar usuário
+                                <a href="#" class="btn btn-dark w-100" id="btncad_usuario">Cadastrar usuário
                                 </a>
                             </div>
                         </div>
@@ -163,8 +166,7 @@
 
                             <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                                 <label for="identificacao_local" class="form-label">Identificação do local</label>
-                                <input type="text" class="form-control " id="identificacao_local"
-                                    name="identificacao_local"
+                                <input type="text" class="form-control " id="identificacao_local" name="identificacao_local"
                                     placeholder="Digite a identificação do local para cadastro">
                             </div>
 
@@ -179,65 +181,84 @@
             </div>
             <div id="admlista" class="col-12 col-lg-9 rounded shadow-lg p-3 mb-5 mt-4 bg-body-tertiary">
                 <div class="input-group mb-3 rounded">
-                    <input type="text" class="form-control " placeholder="Pesquisar item" id="pesquisar_item" name="pesquisar"
-                        aria-label="pesquisar" list="procuraritensadm" aria-describedby="button-addon2" ">
-                        <datalist id="procuraritensadm">
-                        
-                    </datalist>
-                    <button class="btn btn-primary"  type="button" id="button-addon2"><i class="bi bi-filter" "></i></button>
-                    
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-dark text-light table-striped table-hover">
-                        <thead>
-                            <tr class="text-center">
-                                <th scope="col">ID</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">Descrição</th>
-                                <th scope="col">QTD_disponível</th>
-                                <th scope="col">QTD_total</th>
-                                <th scope="col">Localização</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <input type="text" class="form-control " placeholder="Pesquisar item" id="pesquisar_item"
+                        name="pesquisar" aria-label="pesquisar" list="procuraritensadm" aria-describedby="button-addon2" ">
+                                <datalist id=" procuraritensadm">
 
-                        </tbody>
-                    </table>
+                    </datalist>
+                    <button class="btn btn-primary" type="button" id="button-addon2"><i class="bi bi-filter" "></i></button>
+
+                        </div>
+                        <div class=" table-responsive">
+                            <table class="table table-dark text-light table-striped table-hover">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Categoria</th>
+                                        <th scope="col">Descrição</th>
+                                        <th scope="col">QTD_disponível</th>
+                                        <th scope="col">QTD_total</th>
+                                        <th scope="col">Localização</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                 </div>
             </div>
             <div id="historico" class="col-12 col-lg-9 rounded shadow-lg p-3 mb-5 mt-4 bg-body-tertiary">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Pesquisar item" id="pesquisar_item" name="pesquisar"
-                        aria-label="pesquisar" list="procuraremprestimos" aria-describedby="button-addon2" ">
-                        <datalist id="procuraremprestimos">
-                        
+                    <input type="text" class="form-control" placeholder="Pesquisar item" id="pesquisar_item"
+                        name="pesquisar" aria-label="pesquisar" list="procuraremprestimos" aria-describedby="button-addon2" ">
+                                <datalist id=" procuraremprestimos">
+
                     </datalist>
-                    <button class="btn btn-primary"  type="button" id="button-addon2"><i class="bi bi-filter" "></i></button>
-                    
-                </div>
-                <div class="table-responsive">
-                 <table class="table table-dark text-light table-striped table-hover">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">item</th>
-                        <th scope="col">QTD</th>
-                        <th scope="col">Data de empréstimo</th>
-                        <th scope="col">Prazo</th>
-                        <th scope="col">Data de devolução</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-            </table>
+                    <button class="btn btn-primary" type="button" id="button-addon2"><i class="bi bi-filter" "></i></button>
+
+                        </div>
+                        <div class=" table-responsive">
+                            <table class="table table-dark text-light table-striped table-hover">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Usuario</th>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">QTD</th>
+                                        <th scope="col">Responsável</th>
+                                        <th scope="col">Data de empréstimo</th>
+                                        <th scope="col">Prazo</th>
+                                        <th scope="col">Data de devolução</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($dados as $d)
+                                        <td class="text-center">{{ $d->id }}</td>
+                                        <td class="text-center">{{ $d->usuario_nome }}</td>
+                                        <td class="text-center">{{ $d->item_nome }}</td>
+                                        <td class="text-center">{{ $d->quantidade }}</td>
+                                        <td class="text-center">{{ $d->responsavel }}</td>
+                                        <td class="text-center">{{ $d->horario_retirada }}</td>
+                                        <td class="text-center">{{ $d->prazo }}</td>
+                                        <td class="text-center">{{ $d->horario_devolucao }}</td>
+                                        <td class="text-center">
+                                            @if ($d->horario_devolucao == null)
+                                                <span class="badge bg-warning">Em andamento</span>
+                                            @elseif ($d->horario_devolucao > $d->prazo)
+                                                <span class="badge bg-danger">Atrasado</span>
+                                            @else
+                                                <span class="badge bg-success">Devolvido</span>
+                                            @endif
+                                        </td>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
                 </div>
             </div>
         </div>
 
 
 
-    @endsection
+@endsection

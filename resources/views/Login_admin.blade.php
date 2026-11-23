@@ -14,19 +14,18 @@
                     </div>
                     <div class="col-12">
                         <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                            <input type="email" class="form-control" placeholder="Usuário">
+                            <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                            <input type="email" class="form-control" placeholder="E-mail" id="Email">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
-                            <input type="password" class="form-control" placeholder="Senha">
+                            <input type="password" class="form-control" placeholder="Senha" id="senha">
                         </div>
                     </div>
                     <div class="col-12 text-center mt-3">
-                        <a class="btn btn-dark shadow-lg container-fluid button-animation"
-                            href="{{ route('tela_inicio') }}">ENTRAR</a>
+                        <a class="btn btn-dark shadow-lg container-fluid button-animation" id="btnentrar">ENTRAR</a>
                     </div>
                 </div>
             </div>

@@ -18,6 +18,8 @@
                 href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
             <script src="{{ asset('emprestimo.js') }}"></script>
             <script src="{{ asset('cadastros.js') }}"></script>
+            @vite(['resources/js/Login.js'])
+          
         </head>
 
         <body>

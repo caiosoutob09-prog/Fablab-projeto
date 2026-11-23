@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Emprestimo;
 use Illuminate\Http\Request;
 
+
+
 class EmprestimoController extends Controller
 {
     public function emprestimo(Request $request)
     {
         return view('Formulario_emprestimo');
     }
+
+    
 
     public function emprestar(Request $request)
     {
