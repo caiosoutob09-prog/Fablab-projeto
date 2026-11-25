@@ -183,13 +183,13 @@
                 <div class="input-group mb-3 rounded">
                     <input type="text" class="form-control " placeholder="Pesquisar item" id="pesquisar_item"
                         name="pesquisar" aria-label="pesquisar" list="procuraritensadm" aria-describedby="button-addon2" ">
-                                <datalist id=" procuraritensadm">
+                                    <datalist id=" procuraritensadm">
 
                     </datalist>
                     <button class="btn btn-primary" type="button" id="button-addon2"><i class="bi bi-filter" "></i></button>
 
-                        </div>
-                        <div class=" table-responsive">
+                            </div>
+                            <div class=" table-responsive">
                             <table class="table table-dark text-light table-striped table-hover">
                                 <thead>
                                     <tr class="text-center">
@@ -203,6 +203,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{-- @foreach ($dados as $d)
+                                    <td class="text-center">{{ $d->id }}</td>
+                                    <td class="text-center">{{ $d->nome }}</td>
+                                    <td class="text-center">{{ $d->categoria_nome }}</td>
+                                    <td class="text-center">{{ $d->descricao }}</td>
+                                    <td class="text-center">{{ $d->quantidade_disponivel }}</td>
+                                    <td class="text-center">{{ $d->quantidade_total }}</td>
+                                    <td class="text-center">{{ $d->local_nome }}</td>
+                                    @endforeach --}}
                                 </tbody>
                             </table>
                 </div>
@@ -211,13 +220,13 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Pesquisar item" id="pesquisar_item"
                         name="pesquisar" aria-label="pesquisar" list="procuraremprestimos" aria-describedby="button-addon2" ">
-                                <datalist id=" procuraremprestimos">
+                                    <datalist id=" procuraremprestimos">
 
                     </datalist>
                     <button class="btn btn-primary" type="button" id="button-addon2"><i class="bi bi-filter" "></i></button>
 
-                        </div>
-                        <div class=" table-responsive">
+                            </div>
+                            <div class=" table-responsive">
                             <table class="table table-dark text-light table-striped table-hover">
                                 <thead>
                                     <tr class="text-center">

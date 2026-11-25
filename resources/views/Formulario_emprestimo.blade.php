@@ -4,7 +4,7 @@
 
 @section('content')
 
-{{ ($dados) }}
+
 
     <div class="container-fluid px-3">
         <div class="row justify-content-center mt-4 mb-4">
